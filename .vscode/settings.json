@@ -25,5 +25,10 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "eslint.useFlatConfig": true
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.useFlatConfig": true,
+  "css.validate": false,
+  "scss.validate": false
 }

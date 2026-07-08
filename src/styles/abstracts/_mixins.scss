@@ -1,0 +1,35 @@
+@use 'sass:map';
+@use 'variables' as *;
+
+// Mobile-first min-width media query: @include media('md') { ... }
+@mixin media($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $min: map.get($breakpoints, $breakpoint);
+    @media (min-width: #{$min}) {
+      @content;
+    }
+  } @else {
+    @error "Unknown breakpoint `#{$breakpoint}`. Available: #{map.keys($breakpoints)}.";
+  }
+}
+
+// Max-width media query (down to, exclusive): @include media-down('sm') { ... }
+@mixin media-down($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $max: map.get($breakpoints, $breakpoint) - 0.02px;
+    @media (max-width: #{$max}) {
+      @content;
+    }
+  } @else {
+    @error "Unknown breakpoint `#{$breakpoint}`. Available: #{map.keys($breakpoints)}.";
+  }
+}
+
+// Enable hover styles only on devices that truly support hover.
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}

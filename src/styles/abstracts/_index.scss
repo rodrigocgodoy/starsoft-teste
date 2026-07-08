@@ -1,0 +1,6 @@
+// Barrel for all abstracts (tokens + mixins). Auto-injected into every
+// Sass module via `sassOptions.additionalData` in next.config.ts, so any
+// component can use `space()`, `$breakpoints`, `@include media(...)`, etc.
+// These emit no CSS on their own, so injecting them everywhere is free.
+@forward 'variables';
+@forward 'mixins';
