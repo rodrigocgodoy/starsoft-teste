@@ -16,8 +16,8 @@ export interface ProductCardProps extends Omit<
   price: number | string
   /** Currency label. @default 'ETH' */
   currency?: string
-  /** Product image. */
-  image: { src: string; alt: string }
+  /** Product image. `blurDataURL` enables a blur-up placeholder. */
+  image: { src: string; alt: string; blurDataURL?: string }
   /** Optional currency badge (e.g. the ETH coin). */
   currencyIconSrc?: string
   /** CTA label. @default 'COMPRAR' */
@@ -51,6 +51,8 @@ export function ProductCard({
             alt={image.alt}
             fill
             sizes="(max-width: 600px) 100vw, 296px"
+            placeholder={image.blurDataURL ? 'blur' : 'empty'}
+            blurDataURL={image.blurDataURL}
           />
         </div>
       </div>
