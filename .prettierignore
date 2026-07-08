@@ -1,0 +1,13 @@
+# Mirrors the ignore list from the Biome config
+node_modules
+dist
+build
+.turbo
+.next
+out
+coverage
+pnpm-lock.yaml
+**/database/generated
+**/gen
+app-old
+next-env.d.ts
