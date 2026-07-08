@@ -4,20 +4,26 @@
 
 // ── Palette (raw values) ────────────────────────────────────────────────
 $color-orange: #ff8310;
+$color-orange-dark: #e57400; // primary hover
 $color-gray-900: #191a20; // darkest — app background
+$color-gray-850: #22232c; // media / card image backdrop
 $color-gray-800: #232323; // surface
 $color-gray-700: #393939; // elevated surface / borders on dark
 $color-gray-300: #cccccc; // muted text / subtle borders
+$color-off-white: #f0f0f0; // high-emphasis text (e.g. price)
 $color-white: #ffffff;
 
 // ── Semantic aliases ────────────────────────────────────────────────────
 // Consumed as CSS custom properties in `globals.scss`; kept here too so
 // build-time logic (e.g. mixins) can reference them if needed.
 $color-primary: $color-orange;
+$color-primary-hover: $color-orange-dark;
 $color-background: $color-gray-900;
 $color-surface: $color-gray-800;
 $color-surface-2: $color-gray-700;
+$color-surface-media: $color-gray-850;
 $color-text: $color-white;
+$color-text-strong: $color-off-white;
 $color-text-muted: $color-gray-300;
 $color-border: $color-gray-700;
 

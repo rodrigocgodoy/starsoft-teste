@@ -1,10 +1,13 @@
 // Design tokens exposed as CSS custom properties (runtime-themeable).
 :root {
   --color-primary: #{$color-primary};
+  --color-primary-hover: #{$color-primary-hover};
   --color-background: #{$color-background};
   --color-surface: #{$color-surface};
   --color-surface-2: #{$color-surface-2};
+  --color-surface-media: #{$color-surface-media};
   --color-text: #{$color-text};
+  --color-text-strong: #{$color-text-strong};
   --color-text-muted: #{$color-text-muted};
   --color-border: #{$color-border};
 
