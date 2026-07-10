@@ -3,15 +3,45 @@
 }
 
 .inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 76px;
-  padding: 0 space('4');
+  min-height: 76px;
+  padding: space('3') space('4');
 
   @include media-down('md') {
-    height: auto;
-    padding: space('4');
+    flex-direction: column;
+    gap: space('3');
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: space('4');
+
+  @include media('md') {
+    position: absolute;
+    left: space('4');
+  }
+}
+
+.link {
+  font-family: $font-family-base;
+  font-size: 13px;
+  font-weight: $font-weight-medium;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
+
+  @include hover {
+    color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+    border-radius: 2px;
   }
 }
 

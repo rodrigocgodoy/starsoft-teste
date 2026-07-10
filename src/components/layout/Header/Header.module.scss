@@ -13,6 +13,16 @@
   }
 }
 
+.logoLink {
+  display: inline-flex;
+  border-radius: 4px;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+  }
+}
+
 .logo {
   height: 38px;
   width: auto;
