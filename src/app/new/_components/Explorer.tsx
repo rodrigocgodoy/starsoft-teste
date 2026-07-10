@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { motion } from 'motion/react'
 import { ProductCard } from '@/components/ui/ProductCard'
 import {
@@ -11,9 +12,14 @@ import {
 } from '@/lib/api/products'
 import { useProductsInfinite } from '@/lib/api/useProducts'
 import { useCart } from '@/lib/cart/useCart'
-import { ProductModal } from '../../_components/ProductModal'
 import { SortSelect } from './SortSelect'
 import styles from './Explorer.module.scss'
+
+// Interaction-gated modal — its own client-only chunk.
+const ProductModal = dynamic(
+  () => import('../../_components/ProductModal').then(m => m.ProductModal),
+  { ssr: false },
+)
 
 const ROWS = 8
 

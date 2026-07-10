@@ -1,10 +1,17 @@
 'use client'
 
 import { useEffect, useState, type ReactNode } from 'react'
+import dynamic from 'next/dynamic'
 import { Provider } from 'react-redux'
 import { CartFlyOverlay } from './CartFlyOverlay'
 import { cartActions } from './cartSlice'
 import { makeStore, useAppDispatch, useAppSelector, useAppStore } from './store'
+
+// Interaction-gated drawer — split into its own client-only chunk.
+const CartDrawer = dynamic(
+  () => import('@/components/cart/CartDrawer').then(m => m.CartDrawer),
+  { ssr: false },
+)
 
 const STORAGE_KEY = 'starsoft:cart'
 
@@ -16,6 +23,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     <Provider store={store}>
       <CartSync />
       {children}
+      <CartDrawer />
       <CartFlights />
     </Provider>
   )
