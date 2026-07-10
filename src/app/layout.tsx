@@ -20,9 +20,33 @@ const ibmPlexSans = IBM_Plex_Sans({
   display: 'swap',
 })
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+const description =
+  'Marketplace de artefatos NFT cunhados on-chain. Explore, ordene e monte a sua mochila.'
+
 export const metadata: Metadata = {
-  title: 'Front-end Challenge',
-  description: 'Starsoft front-end challenge',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Starsoft — Marketplace de NFTs',
+    template: '%s · Starsoft',
+  },
+  description,
+  applicationName: 'Starsoft',
+  keywords: ['NFT', 'marketplace', 'ETH', 'Starsoft', 'coleção', 'on-chain'],
+  openGraph: {
+    type: 'website',
+    locale: 'pt_BR',
+    siteName: 'Starsoft',
+    url: siteUrl,
+    title: 'Starsoft — Marketplace de NFTs',
+    description,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Starsoft — Marketplace de NFTs',
+    description,
+  },
+  robots: { index: true, follow: true },
 }
 
 export default function RootLayout({
