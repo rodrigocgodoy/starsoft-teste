@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { CartProvider } from '@/lib/cart/CartProvider'
 import { QueryProvider } from '@/lib/query/QueryProvider'
+import { siteUrl } from '@/lib/site'
 import './globals.scss'
 
 const poppins = Poppins({
@@ -20,7 +21,6 @@ const ibmPlexSans = IBM_Plex_Sans({
   display: 'swap',
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 const description =
   'Marketplace de artefatos NFT cunhados on-chain. Explore, ordene e monte a sua mochila.'
 
