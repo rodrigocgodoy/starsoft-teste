@@ -1,0 +1,121 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: space('4');
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 760px;
+  max-height: calc(100vh - #{space('6')});
+  overflow: hidden;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+
+  @include media-down('md') {
+    flex-direction: column;
+    max-height: calc(100vh - #{space('4')});
+    overflow-y: auto;
+  }
+}
+
+.close {
+  position: absolute;
+  top: space('3');
+  right: space('3');
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text);
+  background: rgba(0, 0, 0, 0.35);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  @include hover {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+// ── Media ──────────────────────────────────────────────────────────────────
+.media {
+  flex-shrink: 0;
+  width: 360px;
+  padding: space('4');
+  background: var(--color-surface-media);
+
+  @include media-down('md') {
+    width: 100%;
+  }
+}
+
+.mediaInner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.image {
+  object-fit: contain;
+}
+
+// ── Body ───────────────────────────────────────────────────────────────────
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: space('3');
+  min-width: 0;
+  padding: space('6') space('4');
+  overflow-y: auto;
+
+  @include media-down('md') {
+    padding: space('4');
+  }
+}
+
+.title {
+  font-size: 26px;
+  font-weight: $font-weight-semibold;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text-strong);
+}
+
+.priceIcon {
+  flex-shrink: 0;
+}
+
+.description {
+  flex: 1;
+  font-size: 14px;
+  font-weight: $font-weight-regular;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.buyButton {
+  margin-top: space('2');
+  height: 66px;
+  box-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25);
+}
