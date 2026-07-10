@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { Button } from '@/components/ui/Button'
 import { CloseIcon } from '@/components/ui/icons/CloseIcon'
 import { formatPrice, type Product } from '@/lib/api/products'
-import { useCart } from '@/lib/cart/CartContext'
+import { useCart } from '@/lib/cart/useCart'
 import styles from './ProductModal.module.scss'
 
 interface ProductModalProps {

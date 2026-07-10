@@ -10,7 +10,7 @@ import {
   type SortBy,
 } from '@/lib/api/products'
 import { useProductsInfinite } from '@/lib/api/useProducts'
-import { useCart } from '@/lib/cart/CartContext'
+import { useCart } from '@/lib/cart/useCart'
 import { ProductModal } from '../../_components/ProductModal'
 import { SortSelect } from './SortSelect'
 import styles from './Explorer.module.scss'

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/Button'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { formatPrice, type Product } from '@/lib/api/products'
 import { useProductsInfinite } from '@/lib/api/useProducts'
-import { useCart } from '@/lib/cart/CartContext'
+import { useCart } from '@/lib/cart/useCart'
 import { ProductModal } from './ProductModal'
 import styles from './ProductList.module.scss'
 

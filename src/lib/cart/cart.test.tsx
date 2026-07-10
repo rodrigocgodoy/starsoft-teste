@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 import { act, renderHook } from '@testing-library/react'
 import type { Product } from '@/lib/api/products'
-import { CartProvider, useCart } from './CartContext'
+import { CartProvider } from './CartProvider'
+import { useCart } from './useCart'
 
 const product = (id: number, price: string): Product => ({
   id,
@@ -21,7 +22,7 @@ function setup() {
 
 beforeEach(() => localStorage.clear())
 
-describe('cart', () => {
+describe('cart (redux toolkit)', () => {
   it('adds items and increments quantity for duplicates', () => {
     const { result } = setup()
 

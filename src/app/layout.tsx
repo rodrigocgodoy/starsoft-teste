@@ -3,7 +3,7 @@ import { IBM_Plex_Sans, Poppins } from 'next/font/google'
 import { CartDrawer } from '@/components/cart/CartDrawer'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
-import { CartProvider } from '@/lib/cart/CartContext'
+import { CartProvider } from '@/lib/cart/CartProvider'
 import { QueryProvider } from '@/lib/query/QueryProvider'
 import './globals.scss'
 

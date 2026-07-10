@@ -13,15 +13,15 @@ Marketplace de NFTs construído com **Next.js (App Router)**, consumindo a API d
 
 ## 🧱 Stack & justificativas
 
-| Tecnologia                                  | Uso                | Por quê                                                                                                |
-| ------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------ |
-| **Next.js 16 (App Router)**                 | Framework          | Roteamento, Server Components, otimização de imagem e build.                                           |
-| **TypeScript**                              | Toda a base        | Segurança de tipos e melhor DX.                                                                        |
-| **React Query (TanStack)**                  | Data fetching      | Cache, dedupe, cancelamento e `useInfiniteQuery` para paginação/infinite scroll com menos boilerplate. |
-| **Motion** (`motion.dev`, ex-Framer Motion) | Animações          | Modal, fly-to-cart, dropdown de ordenação, stagger dos cards e micro-interações.                       |
-| **SASS + CSS Modules**                      | Estilização        | Estilos escopados e modulares, com tokens/mixins de design compartilhados e injetados automaticamente. |
-| **React Context**                           | Estado do carrinho | Estado global leve e suficiente para o escopo do carrinho (ver [Decisões](#-decisões-de-arquitetura)). |
-| **ESLint + Prettier**                       | Qualidade          | Padrão consistente alinhado ao estilo do time.                                                         |
+| Tecnologia                                  | Uso                | Por quê                                                                                                           |
+| ------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| **Next.js 16 (App Router)**                 | Framework          | Roteamento, Server Components, otimização de imagem e build.                                                      |
+| **TypeScript**                              | Toda a base        | Segurança de tipos e melhor DX.                                                                                   |
+| **React Query (TanStack)**                  | Data fetching      | Cache, dedupe, cancelamento e `useInfiniteQuery` para paginação/infinite scroll com menos boilerplate.            |
+| **Motion** (`motion.dev`, ex-Framer Motion) | Animações          | Modal, fly-to-cart, dropdown de ordenação, stagger dos cards e micro-interações.                                  |
+| **SASS + CSS Modules**                      | Estilização        | Estilos escopados e modulares, com tokens/mixins de design compartilhados e injetados automaticamente.            |
+| **Redux Toolkit** + React-Redux             | Estado do carrinho | Store tipada com slice do carrinho; server-state fica no React Query (ver [Decisões](#-decisões-de-arquitetura)). |
+| **ESLint + Prettier**                       | Qualidade          | Padrão consistente alinhado ao estilo do time.                                                                    |
 
 ## 🎨 Design tokens
 
@@ -81,7 +81,7 @@ src/
 │  └─ ui/                 # Button, ProductCard, icons/
 ├─ lib/
 │  ├─ api/                # client da API + hook React Query
-│  ├─ cart/               # CartContext + fly-to-cart overlay
+│  ├─ cart/               # RTK slice/store + fly-to-cart overlay
 │  └─ query/              # QueryProvider
 └─ styles/abstracts/      # tokens, mixins
 ```
@@ -90,12 +90,10 @@ src/
 
 - **App Router + fetching no client:** a listagem é buscada via React Query no client para viabilizar _infinite scroll_, cache entre ordenações e cancelamento de requisições.
 - **Modal em vez de rota de detalhe:** a API do desafio expõe apenas `GET /products` (sem endpoint por `id`); como os dados de detalhe já vêm na listagem, os detalhes são exibidos num modal, evitando um _fetch_/rota redundante.
+- **Redux Toolkit para o carrinho, React Query para dados:** separação clara entre _client-state_ (carrinho, no RTK, com persistência em `localStorage`) e _server-state_ (produtos, no React Query com cache e cancelamento).
 - **`next/image` + logo vetorial:** todas as imagens passam pelo otimizador; a logo é servida como SVG para nitidez em qualquer densidade de tela.
 
 ## 🔭 Melhorias futuras
 
-- Migrar o estado do carrinho para **Redux Toolkit** (hoje em Context).
-- **Testes** com Jest + React Testing Library cobrindo carrinho, listagem e ordenação.
-- **Docker** (`Dockerfile` + `docker-compose`) para subir com um comando.
 - **SEO** mais rico (Open Graph, JSON-LD) e auditoria de acessibilidade/Lighthouse.
 - Transições animadas entre rotas e `next/dynamic` para componentes pesados.

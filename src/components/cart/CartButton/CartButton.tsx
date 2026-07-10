@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { useAnimate } from 'motion/react'
 import { BagIcon } from '@/components/ui/icons/BagIcon'
-import { useCart } from '@/lib/cart/CartContext'
+import { useCart } from '@/lib/cart/useCart'
 import styles from './CartButton.module.scss'
 
 export function CartButton() {

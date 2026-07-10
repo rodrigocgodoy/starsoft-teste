@@ -8,7 +8,7 @@ import { MinusIcon } from '@/components/ui/icons/MinusIcon'
 import { PlusIcon } from '@/components/ui/icons/PlusIcon'
 import { TrashIcon } from '@/components/ui/icons/TrashIcon'
 import { formatPrice } from '@/lib/api/products'
-import { useCart } from '@/lib/cart/CartContext'
+import { useCart } from '@/lib/cart/useCart'
 import styles from './CartDrawer.module.scss'
 
 export function CartDrawer() {
