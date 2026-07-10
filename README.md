@@ -33,22 +33,31 @@ As cores, tipografia (Poppins + IBM Plex Sans), espaçamentos, breakpoints e rai
 
 ## 🚀 Como rodar
 
-### Pré-requisitos
+### Com Docker (recomendado — sobe com um comando)
 
-- **Node.js** ≥ 20
-- **pnpm** ≥ 9 (`corepack enable` já disponibiliza o pnpm)
-
-### Passos
+Requisito: **Docker** + **Docker Compose**.
 
 ```bash
-# instalar dependências
+docker compose up --build
+```
+
+A aplicação fica disponível em **http://localhost:3000**. (Se você usa o Compose v1, o comando equivalente é `docker-compose up --build`.)
+
+**Detalhes da configuração:**
+
+- `Dockerfile` multi-stage (deps → build → runner) usando o **`output: 'standalone'`** do Next para uma imagem enxuta (~200 MB).
+- `docker-compose.yml` expõe a porta `3000` e sobe o app em produção.
+- O `packageManager` (pnpm) é fixado no `package.json` e os build scripts nativos (ex.: `sharp`) são aprovados via `pnpm.onlyBuiltDependencies`, garantindo o `pnpm install --frozen-lockfile` dentro da imagem.
+- **Não há variáveis de ambiente obrigatórias**: a base da API tem _fallback_ embutido e a URL canônica se resolve sozinha (Vercel/localhost).
+
+### Local (sem Docker)
+
+Requisitos: **Node.js ≥ 20** e **pnpm ≥ 9** (`corepack enable` já disponibiliza o pnpm).
+
+```bash
 pnpm install
-
-# ambiente de desenvolvimento (http://localhost:3000)
-pnpm dev
-
-# build de produção
-pnpm build && pnpm start
+pnpm dev               # desenvolvimento em http://localhost:3000
+pnpm build && pnpm start   # produção
 ```
 
 ### Scripts
@@ -58,17 +67,17 @@ pnpm build && pnpm start
 | `pnpm dev`          | Servidor de desenvolvimento |
 | `pnpm build`        | Build de produção           |
 | `pnpm start`        | Sobe o build de produção    |
+| `pnpm test`         | Testes (Jest + RTL)         |
 | `pnpm lint`         | ESLint                      |
 | `pnpm format`       | Prettier (write)            |
 | `pnpm format:check` | Prettier (check)            |
 
-### Variáveis de ambiente
+### Variáveis de ambiente (opcionais)
 
-A base da API tem _fallback_ embutido; para sobrescrever, crie um `.env.local`:
-
-```bash
-NEXT_PUBLIC_API_URL=https://api-challenge.starsoft.games/api/v1
-```
+| Variável               | Padrão                                        | Uso                           |
+| ---------------------- | --------------------------------------------- | ----------------------------- |
+| `NEXT_PUBLIC_API_URL`  | `https://api-challenge.starsoft.games/api/v1` | Base da API de produtos       |
+| `NEXT_PUBLIC_SITE_URL` | auto (Vercel) / `http://localhost:3000`       | URL canônica (SEO/OG/sitemap) |
 
 ## 🗂️ Estrutura
 
@@ -92,7 +101,8 @@ src/
 
 ## 🧠 Decisões de arquitetura
 
-- **SSR/ISR com prefetch + hidratação:** as páginas pré-buscam a 1ª página no server (React Query `prefetchInfiniteQuery` → `HydrationBoundary`) e são geradas com **ISR** (`revalidate`), servindo os produtos no HTML estático (TTFB baixo, sem waterfall). No client, o React Query cuida do _infinite scroll_, da ordenação e do cancelamento.
+- **SSR/ISR com prefetch + hidratação:** usamos o **App Router**, cujo _data fetching_ em Server Components + **ISR** (`export const revalidate`) substitui o `getStaticProps`/`getServerSideProps` do Pages Router. As páginas pré-buscam a 1ª página no server (React Query `prefetchInfiniteQuery` → `HydrationBoundary`) e servem os produtos no HTML estático (TTFB baixo, sem waterfall). No client, o React Query cuida do _infinite scroll_, da ordenação e do cancelamento.
+- **Metadados via Metadata API:** o App Router substitui o `next/head` pela **Metadata API** (`export const metadata` / `generateMetadata`), usada para título, Open Graph, Twitter, `robots` e `sitemap`.
 - **Modal em vez de rota de detalhe:** a API do desafio expõe apenas `GET /products` (sem endpoint por `id`); como os dados de detalhe já vêm na listagem, os detalhes são exibidos num modal, evitando um _fetch_/rota redundante.
 - **Redux Toolkit para o carrinho, React Query para dados:** separação clara entre _client-state_ (carrinho, no RTK, com persistência em `localStorage`) e _server-state_ (produtos, no React Query com cache e cancelamento).
 - **`next/image` + logo vetorial:** todas as imagens passam pelo otimizador; a logo é servida como SVG para nitidez em qualquer densidade de tela.
