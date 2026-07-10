@@ -1,6 +1,10 @@
 # Starsoft — Front-end Challenge
 
+**🔗 Demo:** **[starsoft-teste.vercel.app](https://starsoft-teste.vercel.app)** · **[/new](https://starsoft-teste.vercel.app/new)** (vitrine com ordenação + scroll infinito)
+
 Marketplace de NFTs construído com **Next.js (App Router)**, consumindo a API do desafio da Starsoft. O foco foi fidelidade ao design do Figma, uma camada de dados sólida com **React Query**, carrinho de compras completo e animações fluidas com **Motion**.
+
+> Lighthouse (produção): **Performance 96 · Acessibilidade 100 · Best Practices 96 · SEO 100**.
 
 ## ✨ Funcionalidades
 
