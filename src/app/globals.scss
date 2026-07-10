@@ -29,7 +29,9 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--color-text);
-  background: var(--color-background);
+  // Page surface — shared by header, body and footer (Figma: #232323).
+  // Cards sit on top as darker (#191a20) panels.
+  background: var(--color-surface);
   font-family: $font-family-base;
   font-weight: $font-weight-regular;
   -webkit-font-smoothing: antialiased;
