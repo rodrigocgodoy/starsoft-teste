@@ -1,9 +1,16 @@
 .main {
-  display: flex;
   flex: 1;
-  flex-direction: column;
-  align-items: center;
-  gap: space('8');
   width: 100%;
-  padding: space('8') space('4');
+  // 1455px content + 2 × 40px gutter → matches the Figma 136.5px page margin
+  max-width: 1535px;
+  margin-inline: auto;
+  padding: 189px 40px; // Figma: vertical rhythm around the catalog
+
+  @include media-down('lg') {
+    padding: 120px space('4');
+  }
+
+  @include media-down('sm') {
+    padding: 64px space('4');
+  }
 }

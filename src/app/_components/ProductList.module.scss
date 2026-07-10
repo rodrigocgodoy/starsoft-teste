@@ -1,0 +1,160 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 189px; // Figma: gap between grid and load-more control
+  width: 100%;
+
+  @include media-down('lg') {
+    gap: 120px;
+  }
+
+  @include media-down('sm') {
+    gap: 64px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px; // Figma: gap between the 345px card cells
+  width: 100%;
+  justify-items: center;
+
+  @include media('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media('xl') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// ── Load more (progress bar + button) ──────────────────────────────────────
+.more {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  width: 100%;
+  max-width: 403px;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 10px;
+  background: var(--color-surface-2);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius);
+  transition: width 0.3s ease;
+}
+
+.loadButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 86px;
+  width: 100%;
+  background: var(--color-surface-2);
+  border: 0;
+  border-radius: var(--radius);
+  font-family: $font-family-base;
+  font-size: 20px;
+  font-weight: $font-weight-semibold;
+  line-height: 26px;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  @include hover {
+    background: var(--color-surface-media);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// ── Error state ─────────────────────────────────────────────────────────────
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: space('4');
+  padding: space('8') 0;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+// ── Skeleton ──────────────────────────────────────────────────────────────
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: space('4');
+  width: 100%;
+  max-width: 345px;
+  padding: 26px 24px;
+  background: var(--color-background);
+  border-radius: var(--radius);
+}
+
+.skeletonMedia,
+.skeletonLine,
+.skeletonLineShort,
+.skeletonButton {
+  border-radius: var(--radius);
+  background: linear-gradient(
+    100deg,
+    var(--color-surface) 30%,
+    var(--color-surface-2) 50%,
+    var(--color-surface) 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.skeletonMedia {
+  width: 100%;
+  height: 258px;
+}
+
+.skeletonLine {
+  height: 18px;
+}
+
+.skeletonLineShort {
+  width: 60%;
+  height: 12px;
+}
+
+.skeletonButton {
+  height: 66px;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonMedia,
+  .skeletonLine,
+  .skeletonLineShort,
+  .skeletonButton {
+    animation: none;
+  }
+}
