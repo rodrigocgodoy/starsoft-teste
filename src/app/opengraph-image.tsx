@@ -6,27 +6,32 @@ export const contentType = 'image/png'
 
 export default function OpengraphImage() {
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 28,
+        background: '#191a20',
+      }}
+    >
       <div
         style={{
-          width: '100%',
-          height: '100%',
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 28,
-          background: '#191a20',
+          fontSize: 96,
+          fontWeight: 800,
+          color: '#ff8310',
         }}
       >
-        <div style={{ display: 'flex', fontSize: 96, fontWeight: 800, color: '#ff8310' }}>
-          starsoft
-        </div>
-        <div style={{ display: 'flex', fontSize: 40, color: '#cccccc' }}>
-          Marketplace de NFTs on-chain
-        </div>
+        starsoft
       </div>
-    ),
+      <div style={{ display: 'flex', fontSize: 40, color: '#cccccc' }}>
+        Marketplace de NFTs on-chain
+      </div>
+    </div>,
     size,
   )
 }
