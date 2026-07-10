@@ -73,11 +73,14 @@
   line-height: 26px;
   color: var(--color-text);
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 
-  // Darken on hover, matching the primary button's behaviour.
+  // Default stays grey; on hover it turns orange like the primary button.
   @include hover {
-    background: var(--color-surface);
+    background: var(--color-primary);
+    color: var(--color-background);
   }
 
   &:disabled {
