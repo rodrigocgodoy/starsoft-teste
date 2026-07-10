@@ -67,24 +67,30 @@ export function ProductList() {
             ))}
       </div>
 
-      {hasNextPage && (
+      {products.length > 0 && (
         <div className={styles.more}>
           <div className={styles.progressTrack}>
             <div
               className={styles.progressFill}
               style={{
-                width: count ? `${(products.length / count) * 100}%` : '0%',
+                width: hasNextPage
+                  ? `${count ? (products.length / count) * 100 : 0}%`
+                  : '100%',
               }}
             />
           </div>
-          <button
-            type="button"
-            className={styles.loadButton}
-            onClick={() => fetchNextPage()}
-            disabled={isFetchingNextPage}
-          >
-            Carregar mais
-          </button>
+          {hasNextPage ? (
+            <button
+              type="button"
+              className={styles.loadButton}
+              onClick={() => fetchNextPage()}
+              disabled={isFetchingNextPage}
+            >
+              Carregar mais
+            </button>
+          ) : (
+            <p className={styles.doneButton}>Você já viu tudo</p>
+          )}
         </div>
       )}
 

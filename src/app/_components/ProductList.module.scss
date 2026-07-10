@@ -85,6 +85,22 @@
   }
 }
 
+// "Você já viu tudo" — same block as the CTA but non-interactive.
+.doneButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 86px;
+  width: 100%;
+  background: var(--color-surface-2);
+  border-radius: var(--radius);
+  font-family: $font-family-base;
+  font-size: 20px;
+  font-weight: $font-weight-semibold;
+  line-height: 26px;
+  color: var(--color-text);
+}
+
 // ── Error state ─────────────────────────────────────────────────────────────
 .state {
   display: flex;
