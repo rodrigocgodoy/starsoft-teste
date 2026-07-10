@@ -1,0 +1,25 @@
+.cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px;
+  color: #ff9f47; // Figma: bag stroke
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.iconWrap {
+  display: inline-flex;
+}
+
+.cartIcon {
+  flex-shrink: 0;
+}
+
+.cartCount {
+  font-family: $font-family-alt;
+  font-size: 20px;
+  letter-spacing: -0.2927px;
+  color: var(--color-text);
+}
