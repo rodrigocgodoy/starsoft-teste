@@ -3,6 +3,8 @@ import path from 'node:path'
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  // Minimal, self-contained server bundle for the Docker image.
+  output: 'standalone',
   images: {
     // Product images are served from the challenge API's S3 bucket.
     remotePatterns: [
