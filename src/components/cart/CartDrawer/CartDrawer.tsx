@@ -37,13 +37,13 @@ export function CartDrawer() {
   return (
     <div
       className={clsx(styles.overlay, isOpen && styles.open)}
-      aria-hidden={!isOpen}
+      // `inert` removes the closed drawer from the tab order and a11y tree.
+      inert={!isOpen}
     >
       <button
         className={styles.backdrop}
         type="button"
         aria-label="Fechar carrinho"
-        tabIndex={isOpen ? 0 : -1}
         onClick={close}
       />
 
