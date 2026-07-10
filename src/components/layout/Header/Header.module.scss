@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0 40px;
+  background: var(--color-surface);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.21);
+
+  @include media-down('sm') {
+    height: 72px;
+    padding: 0 space('4');
+  }
+}
+
+.logo {
+  height: 38px;
+  width: auto;
+}
