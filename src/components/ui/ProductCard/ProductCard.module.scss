@@ -1,35 +1,59 @@
 .card {
   display: flex;
   flex-direction: column;
-  gap: space('6');
+  gap: 49px; // Figma: card gap between media and info
   width: 100%;
-  max-width: 296px;
+  max-width: 345px; // Figma: card panel (296px content + 2 × 24.5px padding)
+  padding: 26px 24px; // #191a20 panel framing the content
+  background: var(--color-background);
   border-radius: var(--radius);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
 // ── Media ─────────────────────────────────────────────────────────────────
 .media {
+  display: block;
+  position: relative;
   width: 100%;
-  padding: space('4') 40px;
+  height: 258px; // Figma: fixed media height
+  padding: 31px 40px; // insets the art to ~216 × 195
   background-color: var(--color-surface-media);
+  border: 0;
   border-radius: var(--radius);
 }
 
+.mediaButton {
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  @include hover {
+    .image {
+      transform: scale(1.05);
+    }
+  }
+}
+
 .mediaInner {
+  display: block;
   position: relative;
   width: 100%;
-  aspect-ratio: 216 / 195;
+  height: 100%;
 }
 
 .image {
   object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
-// ── Body ──────────────────────────────────────────────────────────────────
+// ── Body (title + description + footer) ──────────────────────────────────
 .body {
   display: flex;
   flex-direction: column;
-  gap: space('2');
+  gap: 10px; // Figma: spacing between title / description / footer
 }
 
 .title {
@@ -39,10 +63,35 @@
   color: var(--color-text);
 }
 
+.titleButton {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  @include hover {
+    color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
 .description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
   font-size: 12px;
-  font-weight: $font-weight-regular;
-  line-height: 1.4;
+  font-weight: $font-weight-light;
+  line-height: 1;
   color: var(--color-text-muted);
 }
 
@@ -50,14 +99,14 @@
 .footer {
   display: flex;
   flex-direction: column;
-  gap: space('4');
-  padding-top: space('1');
+  gap: space('4'); // 24px
+  padding-top: 20px;
 }
 
 .price {
   display: flex;
   align-items: center;
-  gap: space('2');
+  gap: 10px;
 }
 
 .priceIcon {
@@ -71,4 +120,9 @@
   font-weight: $font-weight-semibold;
   line-height: 1.1;
   color: var(--color-text-strong);
+}
+
+.buyButton {
+  height: 66px; // Figma: CTA height
+  box-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25);
 }
