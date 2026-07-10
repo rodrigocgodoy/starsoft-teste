@@ -110,5 +110,6 @@ src/
 
 ## 🔭 Melhorias futuras
 
-- **SEO** mais rico (Open Graph, JSON-LD) e auditoria de acessibilidade/Lighthouse.
-- Transições animadas entre rotas e `next/dynamic` para componentes pesados.
+- **Dados estruturados** JSON-LD (schema.org `Product`) para _rich results_.
+- **Transições animadas entre rotas** (page transitions com Motion).
+- Testes E2E (Playwright) cobrindo o fluxo de compra completo.
