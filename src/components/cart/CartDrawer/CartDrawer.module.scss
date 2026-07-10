@@ -220,7 +220,8 @@
   width: 43px;
   height: 43px;
   flex-shrink: 0;
-  color: var(--color-text);
+  // Dark icon for contrast on the orange fill (WCAG AA).
+  color: var(--color-background);
   background: var(--color-primary);
   border: 0;
   border-radius: 50%;
@@ -281,7 +282,8 @@
   font-size: 16px;
   font-weight: $font-weight-bold;
   text-transform: uppercase;
-  color: var(--color-text);
+  // Dark label for contrast on the orange fill (WCAG AA).
+  color: var(--color-background);
   background: var(--color-primary);
   border: 0;
   border-radius: var(--radius);

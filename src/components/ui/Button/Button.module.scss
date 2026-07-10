@@ -50,7 +50,8 @@
 // ── Variants ────────────────────────────────────────────────────────────
 .primary {
   background-color: var(--color-primary);
-  color: var(--color-text);
+  // Dark label for WCAG AA contrast on the orange fill (white fails ~2.5:1).
+  color: var(--color-background);
 
   @include hover {
     background-color: var(--color-primary-hover);

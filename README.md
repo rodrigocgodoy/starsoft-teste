@@ -92,6 +92,7 @@ src/
 - **Modal em vez de rota de detalhe:** a API do desafio expõe apenas `GET /products` (sem endpoint por `id`); como os dados de detalhe já vêm na listagem, os detalhes são exibidos num modal, evitando um _fetch_/rota redundante.
 - **Redux Toolkit para o carrinho, React Query para dados:** separação clara entre _client-state_ (carrinho, no RTK, com persistência em `localStorage`) e _server-state_ (produtos, no React Query com cache e cancelamento).
 - **`next/image` + logo vetorial:** todas as imagens passam pelo otimizador; a logo é servida como SVG para nitidez em qualquer densidade de tela.
+- **Contraste das CTAs (acessibilidade):** o Figma usa texto branco nos botões laranja, o que reprova o contraste WCAG AA (branco em `#ff8310` ≈ 2.5:1, mínimo 4.5:1). Optamos por **texto escuro** nas CTAs laranja (≈ 7:1) — um desvio consciente do mock em favor da acessibilidade (Lighthouse a11y 100).
 
 ## 🔭 Melhorias futuras
 

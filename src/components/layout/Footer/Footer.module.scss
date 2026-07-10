@@ -52,7 +52,8 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
-  color: rgba(255, 255, 255, 0.44);
+  // 0.44 (Figma) fails AA at 4.2:1; 0.5 clears 4.5:1.
+  color: rgba(255, 255, 255, 0.5);
 
   @include media-down('sm') {
     font-size: 11px;
