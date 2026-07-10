@@ -75,8 +75,9 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
 
+  // Darken on hover, matching the primary button's behaviour.
   @include hover {
-    background: var(--color-surface-media);
+    background: var(--color-surface);
   }
 
   &:disabled {
