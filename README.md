@@ -88,7 +88,7 @@ src/
 
 ## 🧠 Decisões de arquitetura
 
-- **App Router + fetching no client:** a listagem é buscada via React Query no client para viabilizar _infinite scroll_, cache entre ordenações e cancelamento de requisições.
+- **SSR/ISR com prefetch + hidratação:** as páginas pré-buscam a 1ª página no server (React Query `prefetchInfiniteQuery` → `HydrationBoundary`) e são geradas com **ISR** (`revalidate`), servindo os produtos no HTML estático (TTFB baixo, sem waterfall). No client, o React Query cuida do _infinite scroll_, da ordenação e do cancelamento.
 - **Modal em vez de rota de detalhe:** a API do desafio expõe apenas `GET /products` (sem endpoint por `id`); como os dados de detalhe já vêm na listagem, os detalhes são exibidos num modal, evitando um _fetch_/rota redundante.
 - **Redux Toolkit para o carrinho, React Query para dados:** separação clara entre _client-state_ (carrinho, no RTK, com persistência em `localStorage`) e _server-state_ (produtos, no React Query com cache e cancelamento).
 - **`next/image` + logo vetorial:** todas as imagens passam pelo otimizador; a logo é servida como SVG para nitidez em qualquer densidade de tela.

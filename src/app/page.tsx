@@ -7,8 +7,9 @@ import { productsInfiniteOptions } from '@/lib/api/useProducts'
 import { ProductList } from './_components/ProductList'
 import styles from './page.module.scss'
 
-// SSR per request so the first page of products ships in the HTML.
-export const dynamic = 'force-dynamic'
+// ISR: prerender with the first page baked in and revalidate periodically,
+// so the HTML (with products) is served statically for a fast TTFB/LCP.
+export const revalidate = 300
 
 export default async function Home() {
   const queryClient = new QueryClient()

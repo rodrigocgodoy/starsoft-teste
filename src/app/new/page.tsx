@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   description: 'Explore a coleção com ordenação e scroll infinito.',
 }
 
-// SSR per request so the default sort ships prefetched in the HTML.
-export const dynamic = 'force-dynamic'
+// ISR: prerender the default sort and revalidate periodically for a fast TTFB.
+export const revalidate = 300
 
 export default async function NewPage() {
   const queryClient = new QueryClient()

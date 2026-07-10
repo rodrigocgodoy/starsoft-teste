@@ -44,7 +44,13 @@ export async function fetchProducts(
     orderBy,
   })
 
-  const res = await fetch(`${BASE_URL}/products?${params}`, init)
+  const res = await fetch(`${BASE_URL}/products?${params}`, {
+    ...init,
+    // Server-side ISR cache (ignored by the browser). Lets the pages be
+    // statically generated and revalidated instead of hitting the API per
+    // request. Client fetches (load-more, sorting) stay fresh via React Query.
+    next: { revalidate: 300 },
+  })
 
   if (!res.ok) {
     throw new Error(`Failed to load products (${res.status})`)
