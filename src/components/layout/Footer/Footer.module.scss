@@ -16,17 +16,6 @@
   }
 }
 
-.nav {
-  display: flex;
-  align-items: center;
-  gap: space('4');
-
-  @include media('md') {
-    position: absolute;
-    left: space('4');
-  }
-}
-
 .link {
   font-family: $font-family-base;
   font-size: 13px;
@@ -42,6 +31,20 @@
     outline: 2px solid var(--color-primary);
     outline-offset: 4px;
     border-radius: 2px;
+  }
+}
+
+.left {
+  @include media('md') {
+    position: absolute;
+    left: space('4');
+  }
+}
+
+.right {
+  @include media('md') {
+    position: absolute;
+    right: space('4');
   }
 }
 
